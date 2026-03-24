@@ -11,7 +11,7 @@ def fetch_poster(movie_id, movie_title):
     Fetches the poster URL from OMDb using IMDb ID first,
     then falls back to movie title, and finally to default.jpeg.
     """
-    # Try with IMDb IDgit add README.md
+    
     if movie_id:
         url = f"http://www.omdbapi.com/?i=tt{movie_id}&apikey={API_KEY}"
         response = requests.get(url)
@@ -19,7 +19,6 @@ def fetch_poster(movie_id, movie_title):
         if data.get("Poster") and data["Poster"] != "N/A":
             return data["Poster"]
 
-    # Fallback: Try with movie title
     if movie_title:
         url = f"http://www.omdbapi.com/?t={movie_title}&apikey={API_KEY}"
         response = requests.get(url)
@@ -27,7 +26,7 @@ def fetch_poster(movie_id, movie_title):
         if data.get("Poster") and data["Poster"] != "N/A":
             return data["Poster"]
 
-    # Final fallback: Use default.jpeg from project folder
+
     default_path = os.path.join(os.getcwd(), "default.jpeg")
     return default_path
 
